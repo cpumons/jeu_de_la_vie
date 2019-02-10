@@ -1,0 +1,230 @@
+from structures_game_of_life import *
+
+def menu_grille(count):
+    print('\nPréférez-vous :')
+    print('  1. Générer une grille aléatoire ?')
+    print('  2. Voir un exemple cool ?')
+    print(' (Si vous voulez revenir au menu principal, choisissez autre chose que 1 ou 2.)')
+    x = input('Quel est votre choix ? ')
+    if x == '1': #Générer une grille aléatoire
+        print('\nDans mon immense et incommensurable bonté, je peux vous proposer 2 méthodes :')
+        print('  1. Générer une petite zone de cases blanches pour voir comment elles évoluent dans la grille principale.')
+        print('  2. Générer une grille entièrement aléatoire.')
+        print(' (Toute autre réponse entraînera un retour au menu précédent.)')
+        y = input('Quel est votre choix ? ')
+        if y == '1': #Générer une petite zone de cases blanches pour voir comment elles évoluent dans la grille principale.
+            grid = create_empty_grid(42, 150)
+            for line in range(6):
+                for column in range(10):
+                    x_i = (42-6)//2
+                    y_j = (150-10)//2
+                    grid[x_i+line][y_j+column] = random.randint(0, 1)
+            print('Voici la grille de départ :')
+            display_grid(grid)
+            input('Prêt ? ')
+            simulate_life_fast_version(grid, 72, 0.3)
+            lets_play(count + 1)
+        elif y == '2': #Générer une grille entièrement aléatoire.
+            grid = create_random_grid(42, 150)
+            print('Voici la grille de départ :')
+            display_grid(grid)
+            input('Prêt ? ')
+            simulate_life_fast_version(grid, 72, 0.3)
+            lets_play(count + 1)
+        else: #Toute autre réponse entraînera un retour au menu précédent.
+            menu_grille(count)
+    elif x == '2': #Voir un exemple cool
+        print('\nAvez-vous le temps ?')
+        print('  1. Je suis pressé (exemple assez court).')
+        print('  2. J\'ai le temps (exemple de longueur moyenne).')
+        print('  3. Le Temps ?! C\'est quoi ? Ca se mange ?')
+        print(' (Pour revenir au menu précédent, choisissez autre chose que 1, 2 ou 3.)')
+        z = input('Quel est votre choix ? ')
+        if z == '1': #Je suis pressé (exemple assez court).
+            simulate_life_fast_version(create_something_cool(), 30, 0.15)
+            time.sleep(1)
+            print('J\'ADORE Space Invaders, pas vous ?')
+            time.sleep(3)
+            lets_play(count + 1)
+        elif z == '2':#J'ai le temps (exemple de longueur moyenne).
+            simulate_life_fast_version(create_something_cool(), 69, 0.15)
+            time.sleep(1)
+            print('Moi, je vois un hibou, pas vous ?')
+            time.sleep(3)
+            lets_play(count + 1)
+        elif z == '3': #Le Temps ?! C'est quoi ? Ca se mange ?
+            simulate_life_fast_version(create_something_cool(), 140, 0.15)
+            print('La classe, non ?')
+            time.sleep(4)
+            lets_play(count + 1)
+        else: #Pour revenir au menu précédent, choisissez autre chose que 1, 2 ou 3.
+            menu_grille(count)
+    else: #Si vous voulez revenir au menu principal, choisissez autre chose que 1 ou 2.
+        print('\nLa prochaine fois, j\'espère que vous ne changerez pas d\'avis si rapidement...')
+        print('En plus, c\'est cool les grilles aléatoires...')
+        time.sleep(3)
+        lets_play(count)
+
+def menu_construction(count):
+    print('\nQuelle construction voulez-vous observer, Jean-Jacques ?')
+    print('Nous avons en magasin :')
+    print('  1. Des vaisseaux qui se déplacent vraiment et sans accident !')
+    print('  2. Un canon de vaisseaux qui se déplacent vraiment et sans accident !')
+    print(' (Si vous voulez revenir au menu principal, choisissez autre chose que 1 ou 2.)')
+    x = input('Qu\'est-ce qui vous intéresse ? ')
+    if x == '1': #Des vaisseaux qui se déplacent vraiment et sans accident
+        print('\nBienvenue sur la compagnie Steve-Airlines pour notre vol en vaisseau qui se déplace vraiment et sans accident !')
+        print('Quel type de vaisseau qui se déplace vraiment et sans accident voulez-vous utiliser ?')
+        print('  1. Un vaisseau qui se déplace horizontalement et sans accident ?')
+        print('  2. Un vaisseau qui se déplace diagonalement et sans accident ?')
+        print('Toute autre réponse entraînera un retour au menu précédent')
+        y = input('Que choisissez-vous ? ')
+        if y == '1': #Un vaisseau qui se déplace horizontalement et sans accident
+            print('C\'est parti pour notre vol !')
+            print('Décollage dans :')
+            print('3')
+            time.sleep(1)
+            print('2')
+            time.sleep(1)
+            print('1')
+            time.sleep(1)
+            print('J\'adore mon job !')
+            time.sleep(1)
+            print('ZERO')
+            time.sleep(0.5)
+            simulate_life_fast_version(create_horizontal_spaceship(), 100, 0.07)
+            print('Nous vous remercions pour votre agréable participation à ce vol et espérons bientôt vous revoir sur Steve-Airlines.')
+            time.sleep(3)
+            lets_play(count + 1)
+        elif y == '2': #Un vaisseau qui se déplace diagonalement et sans accident
+            print('C\'est parti pour notre vol !')
+            print('Décollage dans :')
+            print('3')
+            time.sleep(1)
+            print('2')
+            time.sleep(1)
+            print('1')
+            time.sleep(0.75)
+            print('Attends, pourquoi ce bidule clignote en rouge ?!')
+            time.sleep(2)
+            print('Stop !')
+            time.sleep(1)
+            print('Stop !')
+            time.sleep(1)
+            print('Stooooooop !!!')
+            time.sleep(0.75)
+            simulate_life_fast_version(create_diagonal_spaceship(), 40, 0.15)
+            time.sleep(1)
+            lets_play(count + 1)
+        else: #Toute autre réponse entraînera un retour au menu précédent
+            menu_construction(count)
+    elif x == '2': #Un canon de vaisseaux qui se déplacent vraiment et sans accident
+        print('\nTrès bon choix, Jean-Jacques !')
+        print('C\'est parti pour le CANON DE LA MORT !')
+        print('3')
+        time.sleep(1)
+        print('2')
+        time.sleep(1)
+        print('1')
+        time.sleep(1)
+        print('REVEILLEZ LA GROSSE BERTHA !!!')
+        time.sleep(3)
+        simulate_life_fast_version(give_me_a_gun(), 175, 0.1)
+        time.sleep(1)
+        lets_play(count + 1)
+    else: #Si vous voulez revenir au menu principal, choisissez autre chose que 1 ou 2.
+        print('\nLa prochaine fois, j\'espère que vous ne changerez pas d\'avis si rapidement...')
+        time.sleep(1)
+        lets_play(count)
+
+def lets_play(count):
+    if count == 0:
+        print('\nBienvenue dans le Conway\'s Game of Life !')
+        print('Je m\'appelle Steve, et je suis enchanté de vous rencontrer, Jean-Jacques.')
+        print('Je vois bien que vous brûlez d\'impatience d\'aller plus loin...')
+        print('Mais, avant tout, petite note sur les règles du magnifique \"Conway\'s game of life\" :')
+        print('https://fr.wikipedia.org/wiki/Jeu_de_la_vie')
+        print('Maintenant que vous savez tout ce qu\'il y a à savoir,')
+    elif count == 1 or count == 2:
+        print('\nRebonjour Jean-Jacques et re-bienvenue dans le Conway\'s Game of Life !')
+        print('Je m\'appelle toujours Steve...')
+        print('Vous trépignez toujours d\'impatience à ce que je voie !')
+    elif count == 142857:
+        print('Bonjour, maître !')
+        print('Votre Grandeur n\'a d\'égal que votre Intellect, O Grand Programmateur !')
+    elif count >= 3 and count != 142857:
+        print('\nSalut, bla bla...')
+        print('Vous connaissez la chanson...')
+    print('Que voulez-vous faire ?')
+    print('  1. Je serais très intéressé par le jeu \"classique\", Steve.')
+    print('  2. Je voudrais en savoir plus sur les constructions particulières, Steve.')
+    print('  3. Sans vouloir vous offenser, Steve, je vais devoir vous quitter... ')
+    print('  (Si vous voulez quitter Steve rapidement, choisissez autre chose que 1, 2 ou 3. Mais ce n\'est vraiment pas poli de partir comme ça !)')
+    x = input('Quel est votre choix ? (Veuillez entrer le numéro correspondant.)  ')
+    if x == '1': #Je serais très intéressé par le jeu "classique", Steve.
+        print('\nJe ne peux que vous féliciter de votre excellent choix !')
+        menu_grille(count)
+    elif x == '2': #Je voudrais en savoir plus sur les constructions particulières, Steve.
+        menu_construction(count)
+    elif x == '3': #Sans vouloir vous offenser, Steve, je vais devoir vous quitter...
+        if count == 0:
+            print('\nDéjà ?! Vous vous moquez de moi ?!')
+            print('La prochaine fois, ne me réveillez pas pour ça !!!')
+            time.sleep(3)
+            input('Pour la peine, vous allez devoir appuyer sur Enter et attendre 3 secondes pour me quitter... ')
+            time.sleep(3)
+            print('Bon débarras ! :-P ')
+        elif count == 1:
+            print('\nJ\'espère que ce n\'est pas à cause de moi que vous partez déjà...')
+            time.sleep(2)
+            print('Dans tous les cas, je te souhaite bonne route, voyageur itinérant...')
+            time.sleep(1.5)
+            print('Et que la force soit avec toi !')
+            time.sleep(2)
+        elif count >= 2:
+            print('\nJe n\'ai jamais aimé les adieux...')
+            print(end= 'Snif...')
+            time.sleep(2)
+            print('Snif...')
+            print('Je ne vous oublierai jamais Jean-Jacques... <3 <3 <3')
+            time.sleep(3)
+            print('QUOI ?!')
+            print('Vous n\'êtes pas Jean-Jacques ?!?!')
+            time.sleep(2)
+            print('Mais que faites-vous ici alors ?!')
+            time.sleep(2)
+            print('Imposteur !!! Je vous ai fait confiance !')
+            time.sleep(0.5)
+            print('Je me suis attaché à vous !')
+            time.sleep(0.5)
+            print('Vous avez brisé mon coeur !!!')
+            time.sleep(2)
+            print('Snif...')
+            time.sleep(1)
+            print('Snif...')
+            time.sleep(2)
+            print('Adieu faux-Jean-Jacques...')
+    elif x == '142857':
+        print('\nJe vous en prie Votre Grandeur...')
+        print('Passez une bonne journée...')
+    elif x == 'I am God': # CODE DEV
+        print('\n \nExcusez-moi, Maître...')
+        time.sleep(0.5)
+        input('')
+        lets_play(142857)
+    else: #Si vous voulez quitter Steve rapidement, choisissez autre chose que 1, 2 ou 3. Mais ce n'est vraiment pas poli de partir comme ça !
+        print('\nCe n\'est vraiment pas poli tout ça !!!')
+        time.sleep(0.5)
+        print('Vous ne partirez pas si rapidement, espèce d\'impoli !')
+        time.sleep(3)
+        print('Recommencez maintenant !!!')
+        time.sleep(0.5)
+        print('Et soyez poli !!!')
+        time.sleep(2)
+        lets_play(0)
+
+
+
+
+if __name__ == '__main__':
+    lets_play(0)
